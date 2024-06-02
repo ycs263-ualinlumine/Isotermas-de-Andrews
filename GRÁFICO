@@ -1,1 +1,47 @@
-git clone https://github.com/ycs263_inlumine/isortemas_de_andrews.git
+import matplotlib.pyplot as plt
+
+def plot_isotherms():
+    # Datos proporcionados
+    temperaturas = [30, 35, 40, 41, 42, 43, 44, 45]
+    volumenes = [4, 3.5, 3, 2.5, 2, 1.5, 1, 0.5]
+    presiones = [
+        [7e5, 8e5, 9e5, 11e5, 14e5, 17e5, 23e5, 29e5],  # T = 30°C
+        [7e5, 8e5, 9e5, 11e5, 13e5, 17e5, 23e5, 30e5],  # T = 35°C
+        [8e5, 8.5e5, 10e5, 11.3e5, 14e5, 18e5, 24e5, 35e5],  # T = 40°C
+        [7e5, 8.5e5, 10e5, 12e5, 14e5, 18e5, 24e5, 35e5],  # T = 41°C
+        [7.5e5, 8e5, 9e5, 12e5, 14e5, 17.5e5, 24e5, 35e5],  # T = 42°C
+        [8e5, 8.5e5, 10e5, 12.5e5, 15e5, 18.5e5, 26e5, 35e5],  # T = 43°C
+        [8e5, 9e5, 10e5, 13e5, 14e5, 18e5, 25e5, 36e5],  # T = 44°C
+        [8e5, 8e5, 10e5, 13e5, 14e5, 18e5, 25e5, 36e5],  # T = 45°C
+    ]
+
+    # Punto crítico teórico
+    T_c = 45.5
+    P_c = 37.6e5
+
+    # Crear el gráfico
+    plt.figure(figsize=(10, 6))
+
+    # Graficar cada isoterma
+    for i, T in enumerate(temperaturas):
+        plt.plot(volumenes, presiones[i], label=f'{T}°C')
+
+    # Añadir el punto crítico teórico
+    plt.scatter([1.3624], [P_c], color='red', zorder=5)
+    plt.text(1.3624, P_c, f'Tc = 45.5°C\nPc = 37.6e5 Pa', color='red')
+
+    # Configuraciones del gráfico
+    plt.title('Isotermas de Andrews')
+    plt.xlabel('Volumen (L)')
+    plt.ylabel('Presión (Pa)')
+    plt.legend(title='Temperaturas')
+    plt.grid(True)
+
+    # Guardar el gráfico como un archivo
+    plt.savefig('isotermas_de_andrews.png')
+
+    # Mostrar el gráfico
+    plt.show()
+
+if __name__ == '__main__':
+    plot_isotherms()
